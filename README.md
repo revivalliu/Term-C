@@ -2,7 +2,7 @@
 
 Our app on Heroku:
 
-https://intense-anchorage-6860.herokuapp.com/
+https://term-c.herokuapp.com/
 
 ruby version : 2.0.0
 rails version: 4.2.2
@@ -38,13 +38,13 @@ And see the schema_migrations table
    git remote -v
    
 Do you see?
-heroku  https://git.heroku.com/intense-anchorage-6860.git (fetch)
-heroku  https://git.heroku.com/intense-anchorage-6860.git (push)
-origin  git@github.com:SFSU-CSC-667/Term-C.git (fetch)
-origin  git@github.com:SFSU-CSC-667/Term-C.git (push)
+heroku  https://git.heroku.com/term-c.git (fetch)
+heroku  https://git.heroku.com/term-c.git (push)
+origin  git@github.com:robinsswei/Term-C.git (fetch)
+origin  git@github.com:robinsswei/Term-C.git (push)
 
 2. If not, add the Heroku remote:
-~/667-workspace/Term-C$ heroku git:remote -a intense-anchorage-6860
+~/667-workspace/Term-C$ heroku git:remote -a term-c
 
 3. To deploy:
 
