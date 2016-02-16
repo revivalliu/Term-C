@@ -1,0 +1,18 @@
+  [1m[36mSQL (2.1ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (12.4ms)[0m  DROP TABLE "foods" CASCADE
+  [1m[36m (40.2ms)[0m  [1mCREATE TABLE "foods" ("id" serial primary key, "server_id" integer NOT NULL, "size" integer DEFAULT 0 NOT NULL, "x" integer DEFAULT 0 NOT NULL, "y" integer DEFAULT 0 NOT NULL, "asset" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (3.7ms)[0m  DROP TABLE "matches" CASCADE
+  [1m[36m (4.8ms)[0m  [1mCREATE TABLE "matches" ("id" serial primary key, "session_id" integer NOT NULL, "food_eaten" integer DEFAULT 0 NOT NULL, "players_eaten" integer DEFAULT 0 NOT NULL, "traps_eaten" integer DEFAULT 0 NOT NULL, "highest_mass" integer DEFAULT 0 NOT NULL, "leaderboard_time" integer DEFAULT 0 NOT NULL, "top_position" integer DEFAULT 0 NOT NULL, "end_time" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (2.6ms)[0m  DROP TABLE "messages" CASCADE
+  [1m[36m (5.9ms)[0m  [1mCREATE TABLE "messages" ("id" serial primary key, "message" text NOT NULL, "user_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (3.2ms)[0m  DROP TABLE "players" CASCADE
+  [1m[36m (6.7ms)[0m  [1mCREATE TABLE "players" ("id" serial primary key, "user_id" integer NOT NULL, "server_id" integer NOT NULL, "username" character varying, "x" integer DEFAULT 0 NOT NULL, "y" integer DEFAULT 0 NOT NULL, "size" integer DEFAULT 1 NOT NULL, "food_eaten" integer DEFAULT 0 NOT NULL, "players_eaten" integer DEFAULT 0 NOT NULL, "leaderboard_start_time" integer DEFAULT 0 NOT NULL, "leaderboard_end_time" integer DEFAULT 0 NOT NULL, "leaderboard_max_time" integer DEFAULT 0 NOT NULL, "top_leaderboard_position" integer DEFAULT 0 NOT NULL, "match_id" integer, "player_type" character varying, "end_time" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (2.2ms)[0m  DROP TABLE "servers" CASCADE
+  [1m[36m (5.8ms)[0m  [1mCREATE TABLE "servers" ("id" serial primary key, "name" character varying, "region" integer, "url" character varying, "player_count" integer DEFAULT 0 NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.5ms)[0m  DROP TABLE "sessions" CASCADE
+  [1m[36m (4.5ms)[0m  [1mCREATE TABLE "sessions" ("id" serial primary key, "name" character varying, "user_id" integer NOT NULL, "server_id" integer NOT NULL, "end_time" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (3.3ms)[0m  DROP TABLE "users" CASCADE
+  [1m[36m (4.6ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "name" character varying DEFAULT '' NOT NULL, "facebook" text, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "preferred_server" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.8ms)[0m  CREATE UNIQUE INDEX  "index_users_on_email" ON "users" USING btree ("email")
+  [1m[36m (1.6ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users" USING btree ("reset_password_token")[0m
+  [1m[35m (47.6ms)[0m  SELECT version FROM "schema_migrations"
