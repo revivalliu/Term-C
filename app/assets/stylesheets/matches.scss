@@ -1,0 +1,36 @@
+// Place all the styles related to the matches controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.show {
+  display: block !important;
+  background: rgba(0, 0, 0, .5);
+}
+
+#matchResultModal #menu{
+  padding-bottom: 15px;
+  border-bottom: 1.5px solid #E4E2E2;
+}
+#matchResultModal #menu button{
+  margin-left:10%;
+}
+
+
+#matchResultModal .modal-body{
+  width: auto;
+  height: auto;
+  min-width: 500px;
+  max-height:100%;
+}
+
+#matchResult{
+  padding-left:0;
+}
+
+#fbShare span{
+  padding-right: 15px;
+}
+
+#footer-menu button{
+  width:40%;
+  margin-left:5%;
+}

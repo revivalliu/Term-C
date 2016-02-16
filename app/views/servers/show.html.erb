@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @server.id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @server.name %>
+</p>
+
+<p>
+  <strong>Region:</strong>
+  <%= @server.region %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @server.url %>
+</p>
+
+<p>
+  <strong>Starttime:</strong>
+  <%= @server.startTime %>
+</p>
+
+<p>
+  <strong>Endtime:</strong>
+  <%= @server.endTime %>
+</p>
+
+<%= link_to 'Edit', edit_server_path(@server) %> |
+<%= link_to 'Back', servers_path %>

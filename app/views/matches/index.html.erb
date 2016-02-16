@@ -1,0 +1,91 @@
+<p id="notice">
+  <%= notice %></p>
+
+
+
+<div class="modal show" id="matchResultModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Game Result</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div id="matchResult" class="col-md-3">
+            <div class="table-responsive">
+              <table class="table table-striped">
+
+                <thead>
+                <tr>
+                  <th>Id</th>
+                </tr>
+                <tr>
+                  <th>Sessionid</th>
+                </tr>
+                <tr>
+                  <th>Foodeaten</th>
+                </tr>
+                <tr>
+                  <th>Playerseaten</th>
+                </tr>
+                <tr>
+                  <th>Trapseaten</th>
+                </tr>
+                <tr>
+                  <th>Highestmass</th>
+                </tr>
+                <tr>
+                  <th>Leaderboardtime</th>
+                </tr>
+                <tr>
+                  <th>Topposition</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <% @matches.each do |match| %>
+                    <tr>
+                      <td>
+                        <%= match.id %></td>
+                      <td>
+                        <%= match.sessionId %></td>
+                      <td>
+                        <%= match.foodEaten %></td>
+                      <td>
+                        <%= match.playersEaten %></td>
+                      <td>
+                        <%= match.trapsEaten %></td>
+                      <td>
+                        <%= match.highestMass %></td>
+                      <td>
+                        <%= match.leaderboardTime %></td>
+                      <td>
+                        <%= match.topPosition %></td>
+                      <td>
+                        <%= link_to 'Show', match %></td>
+                      <td>
+                        <%= link_to 'Edit', edit_match_path(match) %></td>
+                      <td>
+                        <%= link_to 'Destroy', match, method: :delete, data: {confirm: 'Are you sure?' } %></td>
+                    </tr>
+                <% end %></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" data-dismiss="modal">LeaderBoard</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+</div>
+
+  <br>
+
+<%= link_to 'New Match', new_match_path %>

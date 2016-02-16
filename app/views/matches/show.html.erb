@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @match.id %>
+</p>
+
+<p>
+  <strong>Sessionid:</strong>
+  <%= @match.sessionId %>
+</p>
+
+<p>
+  <strong>Foodeaten:</strong>
+  <%= @match.foodEaten %>
+</p>
+
+<p>
+  <strong>Playerseaten:</strong>
+  <%= @match.playersEaten %>
+</p>
+
+<p>
+  <strong>Trapseaten:</strong>
+  <%= @match.trapsEaten %>
+</p>
+
+<p>
+  <strong>Highestmass:</strong>
+  <%= @match.highestMass %>
+</p>
+
+<p>
+  <strong>Leaderboardtime:</strong>
+  <%= @match.leaderboardTime %>
+</p>
+
+<p>
+  <strong>Topposition:</strong>
+  <%= @match.topPosition %>
+</p>
+
+<%= link_to 'Edit', edit_match_path(@match) %> |
+<%= link_to 'Back', matches_path %>

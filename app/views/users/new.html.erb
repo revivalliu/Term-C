@@ -1,0 +1,157 @@
+<% provide(:title, 'Login') %>
+<div id="fb-root"></div>
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    // init the FB JS SDK
+    FB.init({
+      appId      : '440887182777723',                    // App ID from the app dashboard
+      channelUrl : '//local.facebook-test/channel.html',  // Channel file for x-domain comms
+      status     : true,                                 // Check Facebook Login status
+      xfbml      : true,                                  // Look for social plugins on the page
+      oauth      : true,                                  // Enable oauth authentication
+      version    : 'v2.5'
+    });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // check the login status for current user
+  function fbStatus(){
+    FB.getLoginStatus(function(response) {
+      if (response.status == 'connected') {
+        console.log("You're connected with Facebook");
+      }else{
+        console.log("You're not connected with Facebook");
+      }
+    });
+  }
+
+  // get the current user's information, save it for registeration
+  function getCurrentUserInfo() {
+    FB.login(function(response) {
+      if (response.authResponse){
+        console.log("Fetching your information...");
+        FB.api('/me', {fields: 'id, name, email, permissions'},
+          function(response) {
+            console.log('Welcome, ' + response.name + "!");
+            console.log('ID: ' + response.id);
+            console.log('Email: ' + response.email);
+            console.log(response);
+            // TO-DO
+            // send AJAX to server to create a user
+          }
+        );
+      } else {
+        console.log('Auth cancelled.')
+      }
+    }, { scope: 'email' });
+
+  }
+
+  // SHARE STYLE POST TO WALL
+  // we could move this function to Facebook Module
+  var opts = {
+     message : 'I survived 0m 02s and got a score of 10 in Agar.io! Can you do better? Come and play!',
+     name : 'Term-C Dev Test User',
+     link : 'https://intense-anchorage-6860.herokuapp.com/',
+     description : 'Term-C Final Project for CSC 746',
+     picture : 'https://i.ytimg.com/vi/qR7CZ4JZjXA/maxresdefault.jpg'
+  };
+
+  function fbShare(){
+    FB.login(function(response){
+      if (response.authResponse){
+        console.log(response.authResponse.accessToken);
+
+        /* SHARE STYLE POST TO WALL - START */
+        FB.api('/me/feed', 'post', opts, function(response){
+         if (!response || response.error){
+           console.log(response.error);
+           alert('Posting error occured');
+         }else{
+           console.log('Success - Post ID: ' + response.id);
+         }
+        });
+        /* SHARE STYLE POST TO WALL - END */
+
+      }else{
+        console.log('Not logged in');
+      }
+    }, { scope : 'publish_stream, user_photos, photo_upload, publish_actions' });
+
+  }
+</script>
+
+<div class="modal show" id="signupModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Sign Up</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-5 col-md-offset-3">
+                        <h2>Log in</h2>
+
+<% #devise code %>
+                          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                            <div class="field">
+                              <%= f.label :email %><br />
+                              <%= f.email_field :email, autofocus: true %>
+                            </div>
+
+                          <div class="field">
+                            <%= f.label :password %><br />
+                            <%= f.password_field :password, autocomplete: "off" %>
+                          </div>
+
+                          <% # remove rememberable from login %>
+                          <% if false %>
+                            <% if devise_mapping.rememberable? -%>
+                             <div class="field">
+                               <%= f.check_box :remember_me %>
+                                <%= f.label :remember_me %>
+                             </div>
+                            <% end -%>  
+                          <% end %>
+
+                          <div class="actions">
+                            <%= f.submit "Log in" %>
+                          </div>
+                        <% end %>
+
+                        <%= render "devise/shared/links" %>
+
+<% #end devise code %>
+
+                        <h4>Or</h4>
+                        <!-- Added fbShare(), when user login with Facebook, it will sharing a post on the wall -->
+                        <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="true" data-auto-logout-link="true" onlogin="fbShare();">Login and Play</div>
+
+                        <!-- Added fbStatus(), get the user's id, name, email when login with Facebook -->
+                        <!-- <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="true" data-auto-logout-link="true" onlogin="fbStatus();">Check Status</div> -->
+
+                        <div class="fb-like"
+                             data-share="true"
+                             data-width="450"
+                             data-show-faces="true">
+                        </div>
+                                                <hr>
+                        <p>Move mouse to control cell</p>
+                        <p>Press Space to split</p>
+                        <p>Press W to eject some mass</p>
+                      </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

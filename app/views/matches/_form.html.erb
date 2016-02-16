@@ -1,0 +1,49 @@
+<%= form_for(@match) do |f| %>
+  <% if @match.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@match.errors.count, "error") %> prohibited this match from being saved:</h2>
+
+      <ul>
+      <% @match.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :id %><br>
+    <%= f.number_field :id %>
+  </div>
+  <div class="field">
+    <%= f.label :sessionId %><br>
+    <%= f.number_field :sessionId %>
+  </div>
+  <div class="field">
+    <%= f.label :foodEaten %><br>
+    <%= f.number_field :foodEaten %>
+  </div>
+  <div class="field">
+    <%= f.label :playersEaten %><br>
+    <%= f.number_field :playersEaten %>
+  </div>
+  <div class="field">
+    <%= f.label :trapsEaten %><br>
+    <%= f.number_field :trapsEaten %>
+  </div>
+  <div class="field">
+    <%= f.label :highestMass %><br>
+    <%= f.number_field :highestMass %>
+  </div>
+  <div class="field">
+    <%= f.label :leaderboardTime %><br>
+    <%= f.number_field :leaderboardTime %>
+  </div>
+  <div class="field">
+    <%= f.label :topPosition %><br>
+    <%= f.number_field :topPosition %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

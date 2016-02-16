@@ -1,0 +1,61 @@
+<!-- Lynn's sign up modal -->
+
+<% provide(:title, 'Sign up') %>
+<div id="fb-root"></div>
+
+<script>
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=537513733065145";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+</script>
+
+<!-- sign up modal -->
+<div class="modal show" id="signupModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Sign Up</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-5 col-md-offset-3">
+                        <%= form_for(@user) do |f| %>
+                        <%= render 'shared/error_messages' %>
+                        <div class="form-group" >
+                            <%= f.label :name %>
+                            <%= f.text_field :name, class: 'form-control' %>
+                        </div>
+                        <div class="form-group" >
+                            <%= f.submit "Play as guest", class: "btn btn-primary btn-lg" %>
+
+                        </div>
+                        <h4>Or</h4>
+                        <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="true" data-auto-logout-link="true" onlogin=""></div>
+
+                        <div class="fb-like"
+                             data-share="true"
+                             data-width="450"
+                             data-show-faces="true">
+                        </div>
+
+                        <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+                        </fb:login-button>
+
+                        <div id="status"></div>
+                        -->
+                        <hr>
+                        <p>Move mouse to control cell</p>
+                        <p>Press Space to split</p>
+                        <p>Press W to eject some mass</p>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

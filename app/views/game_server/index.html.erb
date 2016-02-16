@@ -1,0 +1,110 @@
+
+<!-- DO NOT DELETE !! -->
+<div id="userId" data-id="<%= @user.id %>"></div>
+<div id="channel" data-channel="<%= GameConfiguration.pusher_channel %>"></div>
+
+<!-- DO NOT DELETE !! -->
+
+<% provide(:title, 'Login') %>
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    // init the FB JS SDK
+    FB.init({
+      appId      : '440887182777723',                    // App ID from the app dashboard
+      channelUrl : '//local.facebook-test/channel.html',  // Channel file for x-domain comms
+      status     : true,                                 // Check Facebook Login status
+      xfbml      : true,                                  // Look for social plugins on the page
+      oauth      : true,                                  // Enable oauth authentication
+      version    : 'v2.5'
+    });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div id="liveLeaderboard">
+  <ol>
+<!--
+    <li class="list">Jim</li>
+    <li class="list">Joe</li>
+    <li class="list">Jake</li>
+    <li class="list">Jerry</li>
+    <li class="list">Jam</li>
+-->
+  </ol>
+</div>
+
+<!-- This is will call out the matchResultModal -->
+<!-- <div class="modal show" id="matchResultModal"> -->
+<div class="modal" id="matchResultModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Game Result</h4>
+      </div>
+      <div class="modal-body">
+        <div class="btn-toolbar" id="menu">
+          <!--<button id="new_match" type="button" class="btn" data-dismiss="modal">New Match</button>-->
+          <form action="/global_leaderboard">
+            <button id="leaderboard" type="submit" class="btn btn-info" data-dismiss="modal">Global LeaderBoard</button>
+          </form>
+          <!--<button id="end_game" type="button" class="btn btn-primary" data-dismiss="modal">End Game</button>-->
+        </div>
+        <div class="container" id="matchResult" >
+          <div class="col-md-6"> 
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th>Food Eaten</th>
+                  <th>Players Eaten</th>
+                  <!--
+                  <th>Traps Eaten</th>
+                  -->
+                  <th>Highest Mass</th>
+                  <th>Leaderboard Time</th>
+                  <th>Top Position</th>
+                </tr>
+                <tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td id="food_eaten"></td>
+                  <td id="players_eaten"></td>
+                  <!--
+                  <td id="traps_eaten"></td>
+                  -->
+                  <td id="highest_mass"></td>
+                  <td id="leaderboard_time"></td>
+                  <td id="top_position"></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <div class="btn-toolbar" id="footer-menu">
+            <button id="fbShare" class="btn btn-primary">
+              <span class="fa fa-facebook"></span>Share
+            </button>
+            <!-- Start a new Match here -->
+            <button id="new_match" type="button" class="btn" data-dismiss="modal">Continue</button>
+          </div>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+</div>
